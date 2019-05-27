@@ -1,0 +1,82 @@
+SELECT TOP 5000 a.[id]
+      ,a.[Image]
+      ,a.[News]
+      ,a.[Date]
+      ,a.[Comment]
+      ,a.[CreatedDate]
+      ,a.[Add]
+      ,a.[MarketId],b.VALUE as brandBanking,c.VALUE as offerBanking, d.VALUE as productBanking
+  FROM [UMSInsightTool].[dbo].[tblMasterMarketDetail] a LEFT JOIN [UMSInsightTool].[dbo].[tblDetMarketBrandBanking] b ON a.id = b.MasterId 
+  LEFT JOIN [UMSInsightTool].[dbo].[tblDetMarketOfferBanking] c on a.id = c.MasterId 
+  LEFT JOIN [UMSInsightTool].[dbo].[tblDetMarketProductBanking] d on a.id = d.MasterId
+
+  SELECT TOP 5000 a.[id]
+      ,a.[Image]
+      ,a.[News]
+      ,a.[Date]
+      ,a.[Comment]
+      ,a.[CreatedDate]
+      ,a.[Add]
+      ,a.[MarketId],b.VALUE as brandBanking,
+	  abc = STUFF((
+          SELECT ',' + md.VALUE
+          FROM  [UMSInsightTool].[dbo].[tblDetMarketOfferBanking] md
+          WHERE a.id = md.MasterId
+          FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, ''),
+	 abcde = STUFF((
+          SELECT ',' + d.VALUE
+          FROM  [UMSInsightTool].[dbo].[tblDetMarketProductBanking] d
+          WHERE a.id = d.MasterId
+          FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '')
+
+  FROM [UMSInsightTool].[dbo].[tblMasterMarketDetail] a
+  LEFT JOIN [UMSInsightTool].[dbo].[tblDetMarketBrandBanking] b ON a.id = b.MasterId 
+
+  SELECT TOP 5000 a.[id]
+      ,a.[Image]
+      ,a.[News]
+      ,a.[Date]
+      ,a.[Comment]
+      ,a.[CreatedDate]
+      ,a.[Add],b.VALUE as brandBanking,
+	  abc = STUFF((
+          SELECT ',' + c.VALUE
+          FROM  [UMSInsightTool].[dbo].[tblDetMarketOfferBanking] c
+          WHERE a.id = c.MasterId
+          FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, ''),
+	 abcde = STUFF((
+          SELECT ',' + d.VALUE
+          FROM  [UMSInsightTool].[dbo].[tblDetMarketProductBanking] d
+          WHERE a.id = d.MasterId
+          FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '')
+
+  FROM [UMSInsightTool].[dbo].[tblMasterMarketDetail] a
+  LEFT JOIN [UMSInsightTool].[dbo].[tblDetMarketBrandBanking] b ON a.id = b.MasterId
+
+
+
+
+
+
+
+  SELECT  a.[id]
+      ,a.[AudioVideo]
+      ,a.[CreatedDate],
+	  verbatimTheme = STUFF((
+          SELECT ',' + c.VerbatimThemeId
+          FROM  [UMSInsightTool].[dbo].[tblDetVerbatimTheme] c
+          WHERE a.id = c.MasterId
+          FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, ''),
+		  b.MonthofStudyId,
+		  d.NationalityId,
+		  e.VerbatimSentimentId,
+		  f.Country,
+		  g.Year,
+		  h.CustomerSegment
+  FROM [UMSInsightTool].[dbo].[tblMasterAudioVideo] a
+  right join [UMSInsightTool].[dbo].[tblDetMonthofStudy] b on a.id = b.MasterId
+  left join [UMSInsightTool].[dbo].[tblDetNationality] d on a.id = d.MasterId
+  left join [UMSInsightTool].[dbo].[tblDetVerbatimSentiment] e on a.id= e.MasterId
+  left join [UMSInsightTool].[dbo].[tblDetCountry] f on a.id = f.MasterId
+  left join [UMSInsightTool].[dbo].tblDetYear g on a.id = g.MasterId
+  left join [UMSInsightTool].[dbo].[tblDetCustomerSegment] h on a.id = h.MasterId

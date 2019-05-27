@@ -7,7 +7,7 @@ var nameSchema = new mongoose.Schema({
       userName: {
         type: String
       },
-      startDate: {
+      loginAt: {
         type: Date,
       },
       endDate:{
@@ -22,5 +22,5 @@ var nameSchema = new mongoose.Schema({
 
   });
 
-  var login_history = mongoose.model("login_history", nameSchema);
+  var login_history = mongoose.model("login-history", nameSchema);
   module.exports=login_history;

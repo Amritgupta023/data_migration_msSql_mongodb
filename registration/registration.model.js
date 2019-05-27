@@ -34,6 +34,6 @@ var nameSchema = new mongoose.Schema({
       }, { runSettersOnQuery: true}
     );
 
-  var registration = mongoose.model("registration", nameSchema);
+  var registration = mongoose.model("users", nameSchema);
 
   module.exports=registration;

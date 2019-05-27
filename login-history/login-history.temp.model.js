@@ -7,7 +7,7 @@ var nameSchema = new mongoose.Schema({
       userName: {
         type: String
       },
-      startDate: {
+      loginAt: {
         type: Date,
       },
       endDate:{

@@ -1,0 +1,6 @@
+for(let arr of data){
+
+for(let elem in arr){
+    body. = elem
+}
+}

@@ -26,10 +26,15 @@ function registration(){
         // create Request object
         var request = new sql.Request();
         
-    
+    // ********************STEP 1***********
+
         // request.query('SELECT * FROM tblAdmin', async function (err, recordset) {
-        //  request.query('SELECT * FROM tblRegistration', async function (err, recordset) {
+
+        //   request.query('SELECT * FROM tblRegistration', async function (err, recordset) {
         //     if (err) console.log(err)
+            
+        //     let totalusers = recordset.recordset.length;
+        //     // console.log("Total users will be:",totalusers,recordset);
         //     for(let i=0;i<recordset.recordset.length;i++){
         //         let user = {};
         //         user.name=recordset.recordset[i].Name;
@@ -43,22 +48,27 @@ function registration(){
         //         user.c= recordset.recordset[i].CreatedByID;
     
         //         var myData = new registrationModel(user);
-        //         // console.log(myData);
+        //         console.log(i+1,"users is inserted of ",totalusers,"users");
         //         await myData.save();
         //     }
-        //     console.log("Data inserted successfully");
+        //     console.log("User Data inserted successfully");
         // });
     
-    
-    
+    // **************Step2************
+
         // request.query('SELECT * FROM tblRegistration', async function (err, recordset) {
         //     if (err) console.log(err)
         //     for(let i=0;i<recordset.recordset.length;i++){
         //        var abc= await registrationModel.findOne({'id':recordset.recordset[i].CreatedByID});
-        //         let valueToUpdate = {"createdByID":abc._id};
+        //     if(abc){
+        //        let valueToUpdate = {"createdByID":(abc._id)?abc._id:""};
         //        var abcd= await registrationModel.findOneAndUpdate({'id':recordset.recordset[i].id},valueToUpdate);
+           
+        //     }
         //     }
         //     console.log("Data updated successfully");
+        // });
+
         // });
 
     });
